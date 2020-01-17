@@ -48,4 +48,13 @@
         max-width: 30rem;
         margin: 0 auto;
     }
+
+    .clear {
+        display: flex;
+
+    }
+
+    &__searchbar-clear {
+        margin: 0 auto;
+    }
 }

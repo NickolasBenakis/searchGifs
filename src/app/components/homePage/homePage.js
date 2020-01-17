@@ -3,6 +3,8 @@ import SearchBar from '../searchBar/searchBar';
 import { isValidQuery } from '../../utils/isValidQuery';
 import searchGifApi from '../../../api/searchGifApi';
 import GifList from '../../components/gifList/gifList';
+import SkeletonCard from '../skeletonCard/skeletonCard';
+import SkeletonCardList from '../skeletonCard/skeletonCardList';
 
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
@@ -33,16 +35,24 @@ const HomePage = () => {
         setQuery(value);
     };
 
+    const handleClear = () => {
+        setGifs([]);
+    };
+
     return (
         <Fragment>
             <header className="App-header"></header>
             <main className="main">
-                <SearchBar handleSearch={handleSearch} />
-                {gifs.length ? (
+                <SearchBar
+                    handleSearch={handleSearch}
+                    handleClear={handleClear}
+                />
+                {gifs.length & !loading ? (
                     <GifList gifs={gifs} />
                 ) : loading ? (
-                    <div className="loading-bar"></div>
-                ) : null}
+                    <SkeletonCardList />
+                ) : // <div className="loading-bar"></div>
+                null}
             </main>
         </Fragment>
     );

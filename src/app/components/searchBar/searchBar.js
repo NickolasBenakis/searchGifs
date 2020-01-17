@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 
-const SearchBar = ({ handleSearch }) => {
+const SearchBar = ({ handleSearch, handleClear }) => {
     return (
         <Fragment>
             <form method="POST" onSubmit={handleSearch} className="form">
@@ -21,6 +21,13 @@ const SearchBar = ({ handleSearch }) => {
                         name="submit"
                         value="search">
                         Search
+                    </button>
+                </div>
+                <div className="clear">
+                    <button
+                        className="btn btn-secondary form__searchbar-clear"
+                        onClick={handleClear}>
+                        Clear
                     </button>
                 </div>
             </form>

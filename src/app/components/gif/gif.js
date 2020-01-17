@@ -1,8 +1,12 @@
 import React from 'react';
+import defaultGif from '../../../theme/assets/giphy.gif';
 
 const Gif = ({ id, title, username, image }) => {
+    const errorHandling = image => {
+        return image ? image : '../../../theme/assets/giphy.gif';
+    };
     const divStyle = {
-        backgroundImage: 'url(' + image + ')'
+        backgroundImage: 'url(' + errorHandling(image) + ')'
     };
     return (
         <div className="card" style={divStyle}>

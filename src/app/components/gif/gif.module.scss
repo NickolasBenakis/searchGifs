@@ -1,6 +1,6 @@
 .card {
     width: 25rem;
-    height: 30rem;
+    height: 25rem;
     color: $black;
     margin: 1rem;
     cursor: pointer;
@@ -22,6 +22,16 @@
         // .card-title {
         //     visibility: visible;
         // }
+    }
+
+    @media (max-width: $sm) {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    @media (max-width: $xs) {
+        width: 18rem;
+        height: 18rem;
     }
 
 }
