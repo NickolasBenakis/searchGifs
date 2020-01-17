@@ -1,6 +1,6 @@
 import React, { Fragment } from 'react';
 import Gif from '../gif/gif';
-
+import { handleImageUrl } from '../../utils/handleImageUrl';
 const GifList = ({ gifs }) => {
     return (
         <Fragment>
@@ -11,7 +11,9 @@ const GifList = ({ gifs }) => {
                             key={gif.id}
                             id={gif.id}
                             title={gif.title}
-                            image={gif.username}
+                            image={handleImageUrl(
+                                gif.images.downsized_large.url
+                            )}
                         />
                     );
                 })}
