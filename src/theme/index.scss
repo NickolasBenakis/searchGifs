@@ -1,0 +1,8 @@
+@import '~bootstrap/scss/bootstrap';
+@import './_reset.scss';
+@import './_variables.scss';
+@import '../app/App.module.scss';
+@import '../app/components/homePage/homePage.module.scss';
+@import '../app/components/searchBar/searchBar.module.scss';
+@import '../app/components/gif/gif.module.scss';
+@import '../app/components/gifList/gifList.module.scss';

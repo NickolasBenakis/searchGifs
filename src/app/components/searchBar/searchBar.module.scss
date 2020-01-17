@@ -1,0 +1,52 @@
+// .form {
+//     max-width: 74rem;
+//     width: 33rem;
+//     display: block;
+//     margin: 0 auto;
+//     padding: 2rem;
+
+//     .form-group {
+//         display: flex;
+//     }
+
+//     &__searchbar {
+//         width: 25rem;
+//         font-size: 1.4rem;
+
+//         &:focus {
+//             border-color: $green;
+//             box-shadow: 0 0 0 0.2rem $black;
+//         }
+
+//     }
+
+//     &__searchbar-submit {
+//         width: 5rem;
+//         background-color: $green;
+//         border-color: $green;
+//     }
+
+//     #submit-btn {
+
+//         &:hover,
+//         &:focus,
+//         &:active {
+//             background-color: $hoverGreen;
+//             border-color: $hoverGreen;
+//         }
+//     }
+// }
+
+
+
+// @media (max-width: $md) {}
+.form {
+    margin: 0 auto;
+
+    .form-group {
+        display: flex;
+        padding: 2rem;
+        max-width: 30rem;
+        margin: 0 auto;
+    }
+}
