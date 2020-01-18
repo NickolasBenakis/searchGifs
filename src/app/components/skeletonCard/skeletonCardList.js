@@ -5,9 +5,6 @@ const SkeletonCardList = () => {
         <div className="gif-list">
             <div className="skeleton-card"></div>
             <div className="skeleton-card"></div>
-            <div className="skeleton-card"></div>
-            <div className="skeleton-card"></div>
-            <div className="skeleton-card"></div>
         </div>
     );
 };

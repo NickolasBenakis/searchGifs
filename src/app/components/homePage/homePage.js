@@ -8,6 +8,7 @@ import useDebounce from '../../hooks/useDebounce';
 
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
+    const [noResults, setNoResults] = useState(false);
     const [gifs, setGifs] = useState([]);
     const [query, setQuery] = useState('');
     const [isRefreshed, setIsRefreshed] = useState(false);
@@ -30,9 +31,12 @@ const HomePage = () => {
                 console.log(results);
                 setLoading(false);
 
-                if (results.length) {
+                if (results) {
                     saveData(results, query);
                     setGifs(results);
+                }
+                if (!results.length) {
+                    setNoResults(true);
                 }
             } catch (error) {
                 console.error(error);
@@ -55,6 +59,7 @@ const HomePage = () => {
     const handleClear = () => {
         setGifs([]);
         setQuery('');
+        setNoResults(false);
         SearchBarRef.current.value = '';
         window.sessionStorage.clear();
     };
@@ -89,7 +94,6 @@ const HomePage = () => {
 
     return (
         <Fragment>
-            {/* <header className="App-header"></header> */}
             <main className="main">
                 <SearchBar
                     handleSearch={handleSearch}
@@ -98,11 +102,13 @@ const HomePage = () => {
                 />
                 {gifs.length & !loading ? (
                     <GifList gifs={gifs} />
-                ) : // <SkeletonCardList />
-                loading ? (
+                ) : noResults ? (
+                    <div className="alert alert-warning" role="alert">
+                        No results !
+                    </div>
+                ) : loading ? (
                     <SkeletonCardList />
-                ) : // <div className="loading-bar"></div>
-                null}
+                ) : null}
             </main>
         </Fragment>
     );
