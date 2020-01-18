@@ -6,6 +6,8 @@ const SkeletonCardList = () => {
             <div className="skeleton-card"></div>
             <div className="skeleton-card"></div>
             <div className="skeleton-card"></div>
+            <div className="skeleton-card"></div>
+            <div className="skeleton-card"></div>
         </div>
     );
 };

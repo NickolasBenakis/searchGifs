@@ -46,10 +46,11 @@
         width: 85%;
         padding: 0.5rem;
         height: 2rem;
-        font-size: 0.6rem;
+        font-size: 0.8rem;
         background-color: $white;
         display: block;
         resize: none;
+        font-family: monospace;
     }
 
 
@@ -69,7 +70,6 @@
         background-position: center;
         // box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
         height: inherit;
-
     }
 
 }
