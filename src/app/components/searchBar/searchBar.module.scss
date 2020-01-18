@@ -25,6 +25,10 @@
     &__searchbar-clear {
         margin: 0 auto;
     }
+
+    &__searchbar-submit {
+        transition: all 0.5s;
+    }
 }
 
 .clear {

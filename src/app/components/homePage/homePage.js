@@ -98,7 +98,8 @@ const HomePage = () => {
                 />
                 {gifs.length & !loading ? (
                     <GifList gifs={gifs} />
-                ) : loading ? (
+                ) : // <SkeletonCardList />
+                loading ? (
                     <SkeletonCardList />
                 ) : // <div className="loading-bar"></div>
                 null}

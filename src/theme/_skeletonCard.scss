@@ -36,9 +36,13 @@
    */
 
 .skeleton-card {
+    border: 1px solid rgba(0, 0, 0, 0.125);
+    border-radius: 0.25rem;
     width: 25rem;
     height: 25rem;
     cursor: pointer;
+    background-color: lightgrey;
+    margin: 1.5rem;
 
     &:empty::after {
         content: "";
