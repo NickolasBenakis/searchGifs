@@ -44,6 +44,22 @@
     background-color: lightgrey;
     margin: 1.5rem;
 
+
+    @media (max-width: $sm) {
+        width: 20rem;
+        height: 20rem;
+    }
+
+    @media (min-width: $xs)and(max-width: $sm) {
+        width: 18rem;
+        height: 18rem;
+    }
+
+    @media (max-width: $xs) {
+        width: 15rem;
+        height: 15rem;
+    }
+
     &:empty::after {
         content: "";
         display: block;

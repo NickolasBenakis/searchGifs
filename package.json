@@ -9,7 +9,8 @@
     "test": "react-scripts test",
     "eject": "react-scripts eject",
     "format": "prettier --write \"src/**/*.{js,jsx}\"",
-    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet"
+    "lint": "eslint \"src/**/*.{js,jsx}\" --quiet",
+    "deploy": "./node_modules/.bin/surge --domain https://searchGifs.surge.sh"
   },
   "dependencies": {
     "@testing-library/jest-dom": "^4.2.4",
@@ -19,23 +20,16 @@
     "jquery": "^3.4.1",
     "lodash": "^4.17.15",
     "node-sass": "^4.11.0",
+    "popper.js": "^1.16.0",
     "react": "^16.12.0",
     "react-dom": "^16.12.0",
-    "react-scripts": "3.3.0"
+    "react-icons": "^3.7.0",
+    "react-lazyload": "^2.6.5",
+    "react-scripts": "3.3.0",
+    "surge": "^0.21.3"
   },
   "devDependencies": {
-    "moment": "^2.24.0",
-    "node-sass": "^4.11.0",
-    "popper.js": "^1.16.0",
-    "prettier": "1.18.2",
-    "react-crud-table": "0.0.8",
-    "react-date-picker": "^7.8.2",
-    "react-icons": "^3.7.0",
-    "react-router": "^5.0.1",
-    "react-router-dom": "^5.0.1",
-    "react-test-renderer": "^16.8.6",
-    "react-tooltip": "^3.11.1",
-    "react-use-form-state": "^0.11.0"
+    "prettier": "1.18.2"
   },
   "eslintConfig": {
     "extends": "react-app"

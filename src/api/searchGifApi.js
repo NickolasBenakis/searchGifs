@@ -1,7 +1,7 @@
 import { apiKey } from '../apiKey.js';
 
 export default (query, signal) => {
-    const url = `http://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}`;
+    const url = `https://api.giphy.com/v1/gifs/search?api_key=${apiKey}&q=${query}`;
     const params = {
         method: 'GET',
         signal
