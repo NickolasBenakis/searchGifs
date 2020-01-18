@@ -1,15 +1,11 @@
 import React, { useRef, useState } from 'react';
-// import defaultGif from '../../../theme/assets/giphy.gif';
 
 const Gif = ({ id, url, image }) => {
     const cardUrlRef = useRef(null);
     const [copied, setCopied] = useState(false);
 
-    const errorHandling = image => {
-        return image ? image : '../../../theme/assets/giphy.gif';
-    };
     const divStyle = {
-        backgroundImage: 'url(' + errorHandling(image) + ')'
+        backgroundImage: 'url(' + image + ')'
     };
 
     const copyToClipBoard = e => {

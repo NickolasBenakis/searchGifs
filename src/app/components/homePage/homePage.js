@@ -30,15 +30,15 @@ const HomePage = () => {
                 setNetworkError(false);
                 setLoading(true);
 
-                const apiResponse = await searchGifApi(query);
+                const apiResponse = await searchGifApi(debouncedQuery);
                 const results = apiResponse.data;
                 const { status } = apiResponse.meta;
 
                 console.log(results);
                 setLoading(false);
 
-                if (results && status === 200) {
-                    saveData(results, query);
+                if (results.length && status === 200) {
+                    saveData(results, debouncedQuery);
                     setGifs(results);
                 }
                 if (!results.length && status === 200) {
@@ -110,17 +110,17 @@ const HomePage = () => {
                     handleClear={handleClear}
                     ref={SearchBarRef}
                 />
-                {noResults ? (
-                    <div className="alert alert-warning" role="alert">
-                        No results !
-                    </div>
-                ) : networkError ? (
+                {networkError ? (
                     <div className="alert alert-danger" role="alert">
                         Oups! NetworkError
                     </div>
+                ) : noResults ? (
+                    <div className="alert alert-warning" role="alert">
+                        No results !
+                    </div>
                 ) : loading ? (
                     <SkeletonCardList />
-                ) : gifs.length & !loading ? (
+                ) : gifs.length && !loading ? (
                     <GifList gifs={gifs} />
                 ) : null}
             </main>

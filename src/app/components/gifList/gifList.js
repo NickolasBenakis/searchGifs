@@ -5,22 +5,18 @@ import LazyLoad from 'react-lazyload';
 
 const GifList = ({ gifs }) => {
     return (
-        <Fragment>
-            <div className="gif-list">
-                {gifs.map(gif => {
-                    return (
-                        <Gif
-                            key={gif.id}
-                            id={gif.id}
-                            url={gif.url}
-                            image={handleImageUrl(
-                                gif.images.downsized_large.url
-                            )}
-                        />
-                    );
-                })}
-            </div>
-        </Fragment>
+        <div className="gif-list">
+            {gifs.map(gif => {
+                return (
+                    <Gif
+                        key={gif.id}
+                        id={gif.id}
+                        url={gif.url}
+                        image={handleImageUrl(gif.images.downsized_medium.url)}
+                    />
+                );
+            })}
+        </div>
     );
 };
 export default GifList;
