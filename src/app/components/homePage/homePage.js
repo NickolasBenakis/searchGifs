@@ -9,9 +9,11 @@ import useDebounce from '../../hooks/useDebounce';
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
     const [noResults, setNoResults] = useState(false);
+    const [networkError, setNetworkError] = useState(false);
+    const [isRefreshed, setIsRefreshed] = useState(false);
+
     const [gifs, setGifs] = useState([]);
     const [query, setQuery] = useState('');
-    const [isRefreshed, setIsRefreshed] = useState(false);
     const SearchBarRef = useRef(null);
 
     const debouncedQuery = useDebounce(query, 400);
@@ -26,20 +28,25 @@ const HomePage = () => {
             try {
                 setLoading(true);
 
-                let results = await searchGifApi(query);
-                results = results.data;
+                const apiResponse = await searchGifApi(query);
+                const results = apiResponse.data;
+                const { status } = apiResponse.meta;
+
                 console.log(results);
                 setLoading(false);
 
-                if (results) {
+                if (results && status === 200) {
                     saveData(results, query);
                     setGifs(results);
                 }
-                if (!results.length) {
+                if (!results.length && status === 200) {
                     setNoResults(true);
                 }
+                if (status !== 200) {
+                    setNetworkError(true);
+                }
             } catch (error) {
-                console.error(error);
+                console.log(error);
             }
         };
         if (isValidQuery(debouncedQuery) && !isRefreshed) {
@@ -60,6 +67,7 @@ const HomePage = () => {
         setGifs([]);
         setQuery('');
         setNoResults(false);
+        setNetworkError(false);
         SearchBarRef.current.value = '';
         window.sessionStorage.clear();
     };
@@ -100,14 +108,18 @@ const HomePage = () => {
                     handleClear={handleClear}
                     ref={SearchBarRef}
                 />
-                {gifs.length & !loading ? (
-                    <GifList gifs={gifs} />
-                ) : noResults ? (
+                {noResults ? (
                     <div className="alert alert-warning" role="alert">
                         No results !
                     </div>
+                ) : networkError ? (
+                    <div className="alert alert-danger" role="alert">
+                        Oups! NetworkError
+                    </div>
                 ) : loading ? (
                     <SkeletonCardList />
+                ) : gifs.length & !loading ? (
+                    <GifList gifs={gifs} />
                 ) : null}
             </main>
         </Fragment>

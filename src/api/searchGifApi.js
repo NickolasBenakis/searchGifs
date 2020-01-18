@@ -6,14 +6,5 @@ export default (query, signal) => {
         method: 'GET',
         signal
     };
-    return fetch(url, params)
-        .then(data => data.json())
-        .then(res => res)
-        .catch(err => {
-            if (err.name === 'AbortError') {
-                console.log('Fetch aborted');
-            } else {
-                console.error('Uh oh, an error!', err);
-            }
-        });
+    return fetch(url, params).then(data => data.json());
 };
