@@ -1,7 +1,6 @@
 import React, { Fragment } from 'react';
 import Gif from '../gif/gif';
 import { handleImageUrl } from '../../utils/handleImageUrl';
-import LazyLoad from 'react-lazyload';
 
 const GifList = ({ gifs }) => {
     return (
