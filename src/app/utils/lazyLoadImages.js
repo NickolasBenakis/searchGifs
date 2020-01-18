@@ -1,7 +1,9 @@
 export default () => {
-    var lazyBackgrounds = [].slice.call(
-        document.querySelectorAll('.lazy-load')
-    );
+    // let lazyBackgrounds = [].slice.call(
+    //     document.querySelectorAll('.lazy-load')
+    // );
+    let lazyBackgrounds = Array.from(document.querySelectorAll('.lazy-load'));
+    console.log(lazyBackgrounds);
 
     if ('IntersectionObserver' in window) {
         let lazyBackgroundObserver = new IntersectionObserver(

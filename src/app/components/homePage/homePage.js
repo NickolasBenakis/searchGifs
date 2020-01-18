@@ -105,7 +105,9 @@ const HomePage = () => {
 
     const showGifs = () => {
         if (gifs.length && !loading) {
-            lazyLoadImages();
+            setTimeout(() => {
+                lazyLoadImages();
+            }, 1000);
             return true;
         } else {
             return false;
