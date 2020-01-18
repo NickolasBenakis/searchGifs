@@ -34,12 +34,13 @@ const Gif = ({ id, url, image }) => {
                 copied!
             </span>
             <div className="card-url">
-                <textarea
+                <input
+                    type="text"
                     className="card-url-textarea"
                     readOnly
                     value={url}
                     ref={cardUrlRef}
-                    onClick={copyToClipBoard}></textarea>
+                    onClick={copyToClipBoard}></input>
             </div>
         </div>
     );

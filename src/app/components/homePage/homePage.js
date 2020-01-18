@@ -89,7 +89,7 @@ const HomePage = () => {
 
     return (
         <Fragment>
-            <header className="App-header"></header>
+            {/* <header className="App-header"></header> */}
             <main className="main">
                 <SearchBar
                     handleSearch={handleSearch}

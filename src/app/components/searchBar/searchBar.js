@@ -1,9 +1,10 @@
 import React, { Fragment } from 'react';
-
+import gifLogo from '../../../theme/assets/gif.svg';
 const SearchBar = ({ handleSearch, handleClear }, ref) => {
     return (
         <Fragment>
             <form method="POST" onSubmit={handleSearch} className="form">
+                <img className="form__logo" src={gifLogo} />
                 <div className="form-group">
                     <input
                         ref={ref}
