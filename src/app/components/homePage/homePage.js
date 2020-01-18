@@ -20,10 +20,12 @@ const HomePage = () => {
     useEffect(() => {
         const searchGifs = async () => {
             try {
-                let data = await searchGifApi(query);
+                setLoading(true);
+
+                const data = await searchGifApi(query);
                 const results = data && data.data;
+
                 setLoading(false);
-                console.log(results);
 
                 if (results.length) {
                     saveData(results, query);
@@ -34,7 +36,6 @@ const HomePage = () => {
             }
         };
         if (isValidQuery(query) && !isRefreshed) {
-            setLoading(true);
             searchGifs();
         }
     }, [query]);
