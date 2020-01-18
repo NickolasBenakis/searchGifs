@@ -26,6 +26,8 @@ const HomePage = () => {
     useEffect(() => {
         const searchGifs = async () => {
             try {
+                setNoResults(false);
+                setNetworkError(false);
                 setLoading(true);
 
                 const apiResponse = await searchGifApi(query);
