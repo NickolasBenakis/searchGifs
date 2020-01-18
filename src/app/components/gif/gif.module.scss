@@ -1,27 +1,19 @@
-.card {
+.card-container {
     width: 25rem;
     height: 25rem;
     color: $black;
-    margin: 1rem;
-    cursor: pointer;
-    background-size: cover;
-    background-position: center;
+    margin: 1.5rem;
     box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
-    transition: box-shadow 0.5s, visibility 1s linear;
-
-    // .card-title {
-    //     visibility: hidden;
-    //     position: absolute;
-    //     bottom: 0;
-    // }
+    transition: box-shadow 0.5s, opacity 1s;
+    position: relative;
 
     &:hover {
         box-shadow: 0 25px 25px rgba(0, 0, 0, .19),
             0 15px 20px rgba(0, 0, 0, .23);
 
-        // .card-title {
-        //     visibility: visible;
-        // }
+        .card-url {
+            opacity: 1;
+        }
     }
 
     @media (max-width: $sm) {
@@ -32,6 +24,52 @@
     @media (max-width: $xs) {
         width: 18rem;
         height: 18rem;
+    }
+
+    .card-url {
+        opacity: 0;
+        border: 1px solid rgba(0, 0, 0, 0.125);
+        border-radius: 0.25rem;
+        border: none;
+        outline: none;
+        width: 100%;
+        resize: none;
+        color: $white;
+        font-size: 0.5rem;
+        background: rgb(97, 87, 255);
+        cursor: pointer;
+        transition: all 0.8s linear;
+    }
+
+    .card-url-textarea {
+        margin: 0 auto;
+        width: 85%;
+        padding: 0.5rem;
+        height: 2rem;
+        font-size: 0.6rem;
+        background-color: $white;
+        display: block;
+        resize: none;
+    }
+
+
+
+    .copied {
+
+        font-size: 1.4rem;
+        position: absolute;
+        top: 10px;
+        right: 10px;
+        background: linear-gradient(to right, rgb(49, 145, 255), rgb(0, 230, 204), rgb(49, 145, 255)) 0% 100% / 300%;
+        transition: all 0.5s ease-out;
+    }
+
+    .card {
+        background-size: cover;
+        background-position: center;
+        // box-shadow: 0 10px 20px rgba(0, 0, 0, .19), 0 6px 6px rgba(0, 0, 0, .23);
+        height: inherit;
+
     }
 
 }

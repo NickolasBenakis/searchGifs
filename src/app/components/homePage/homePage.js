@@ -3,17 +3,20 @@ import SearchBar from '../searchBar/searchBar';
 import { isValidQuery } from '../../utils/isValidQuery';
 import searchGifApi from '../../../api/searchGifApi';
 import GifList from '../../components/gifList/gifList';
-import SkeletonCard from '../skeletonCard/skeletonCard';
 import SkeletonCardList from '../skeletonCard/skeletonCardList';
+import useDebounce from '../../hooks/useDebounce';
 
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
     const [gifs, setGifs] = useState([]);
     const [query, setQuery] = useState('');
     const [isRefreshed, setIsRefreshed] = useState(false);
-    const SearchBarEl = useRef(null);
+    const SearchBarRef = useRef(null);
+
+    const debouncedQuery = useDebounce(query, 400);
 
     useEffect(() => {
+        SearchBarRef.current.focus();
         handleRefresh();
     }, []);
 
@@ -22,9 +25,9 @@ const HomePage = () => {
             try {
                 setLoading(true);
 
-                const data = await searchGifApi(query);
-                const results = data && data.data;
-
+                let results = await searchGifApi(query);
+                results = results.data;
+                console.log(results);
                 setLoading(false);
 
                 if (results.length) {
@@ -35,14 +38,15 @@ const HomePage = () => {
                 console.error(error);
             }
         };
-        if (isValidQuery(query) && !isRefreshed) {
+        if (isValidQuery(debouncedQuery) && !isRefreshed) {
             searchGifs();
         }
-    }, [query]);
+        // eslint-disable-next-line
+    }, [debouncedQuery]);
 
     const handleSearch = e => {
         e.preventDefault();
-        const value = SearchBarEl.current.value.toLowerCase();
+        const value = SearchBarRef.current.value.toLowerCase();
         console.log(value);
         setIsRefreshed(false);
         setQuery(value);
@@ -51,7 +55,7 @@ const HomePage = () => {
     const handleClear = () => {
         setGifs([]);
         setQuery('');
-        SearchBarEl.current.value = '';
+        SearchBarRef.current.value = '';
         window.sessionStorage.clear();
     };
 
@@ -65,12 +69,18 @@ const HomePage = () => {
                     window.sessionStorage.getItem('query') !== null
                 ) {
                     setGifs(JSON.parse(window.sessionStorage.getItem('gifs')));
-                    console.log(window.sessionStorage.getItem('query'));
+                    SearchBarRef.current.value = window.sessionStorage
+                        .getItem('query')
+                        .toString();
                     setQuery(window.sessionStorage.getItem('query').toString());
                 }
             }
         }
     };
+
+    // const abortHandler = () => {
+
+    // }
 
     const saveData = (gifs, query) => {
         window.sessionStorage.setItem('gifs', JSON.stringify(gifs));
@@ -84,7 +94,7 @@ const HomePage = () => {
                 <SearchBar
                     handleSearch={handleSearch}
                     handleClear={handleClear}
-                    ref={SearchBarEl}
+                    ref={SearchBarRef}
                 />
                 {gifs.length & !loading ? (
                     <GifList gifs={gifs} />

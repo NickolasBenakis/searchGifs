@@ -10,7 +10,7 @@ const GifList = ({ gifs }) => {
                         <Gif
                             key={gif.id}
                             id={gif.id}
-                            title={gif.title}
+                            url={gif.url}
                             image={handleImageUrl(
                                 gif.images.downsized_large.url
                             )}
@@ -21,5 +21,4 @@ const GifList = ({ gifs }) => {
         </Fragment>
     );
 };
-
 export default GifList;
