@@ -1,4 +1,4 @@
-import React, { Fragment, useState, useEffect } from 'react';
+import React, { Fragment, useState, useEffect, useRef } from 'react';
 import SearchBar from '../searchBar/searchBar';
 import { isValidQuery } from '../../utils/isValidQuery';
 import searchGifApi from '../../../api/searchGifApi';
@@ -10,18 +10,30 @@ const HomePage = () => {
     const [loading, setLoading] = useState(false);
     const [gifs, setGifs] = useState([]);
     const [query, setQuery] = useState('');
+    const [isRefreshed, setIsRefreshed] = useState(false);
+    const SearchBarEl = useRef(null);
+
+    useEffect(() => {
+        handleRefresh();
+    }, []);
 
     useEffect(() => {
         const searchGifs = async () => {
-            let data = await searchGifApi(query);
-            const results = data && data.data;
-            console.log(results);
-            if (results.length) {
-                setGifs(results);
+            try {
+                let data = await searchGifApi(query);
+                const results = data && data.data;
                 setLoading(false);
+                console.log(results);
+
+                if (results.length) {
+                    saveData(results, query);
+                    setGifs(results);
+                }
+            } catch (error) {
+                console.error(error);
             }
         };
-        if (isValidQuery(query)) {
+        if (isValidQuery(query) && !isRefreshed) {
             setLoading(true);
             searchGifs();
         }
@@ -29,14 +41,39 @@ const HomePage = () => {
 
     const handleSearch = e => {
         e.preventDefault();
-        const el = document.getElementById('main-search-bar');
-        const value = el.value.toLowerCase();
+        const value = SearchBarEl.current.value.toLowerCase();
         console.log(value);
+        setIsRefreshed(false);
         setQuery(value);
     };
 
     const handleClear = () => {
         setGifs([]);
+        setQuery('');
+        SearchBarEl.current.value = '';
+        window.sessionStorage.clear();
+    };
+
+    const handleRefresh = () => {
+        if (window.performance) {
+            if (parseInt(performance.navigation.type) === 1) {
+                console.log('Refresh');
+                setIsRefreshed(true);
+                if (
+                    window.sessionStorage.getItem('gifs') !== null &&
+                    window.sessionStorage.getItem('query') !== null
+                ) {
+                    setGifs(JSON.parse(window.sessionStorage.getItem('gifs')));
+                    console.log(window.sessionStorage.getItem('query'));
+                    setQuery(window.sessionStorage.getItem('query').toString());
+                }
+            }
+        }
+    };
+
+    const saveData = (gifs, query) => {
+        window.sessionStorage.setItem('gifs', JSON.stringify(gifs));
+        window.sessionStorage.setItem('query', query);
     };
 
     return (
@@ -46,6 +83,7 @@ const HomePage = () => {
                 <SearchBar
                     handleSearch={handleSearch}
                     handleClear={handleClear}
+                    ref={SearchBarEl}
                 />
                 {gifs.length & !loading ? (
                     <GifList gifs={gifs} />

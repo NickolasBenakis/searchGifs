@@ -1,11 +1,12 @@
 import React, { Fragment } from 'react';
 
-const SearchBar = ({ handleSearch, handleClear }) => {
+const SearchBar = ({ handleSearch, handleClear }, ref) => {
     return (
         <Fragment>
             <form method="POST" onSubmit={handleSearch} className="form">
                 <div className="form-group">
                     <input
+                        ref={ref}
                         className="form__searchbar form-control"
                         id="main-search-bar"
                         type="text"
@@ -23,16 +24,17 @@ const SearchBar = ({ handleSearch, handleClear }) => {
                         Search
                     </button>
                 </div>
-                <div className="clear">
-                    <button
-                        className="btn btn-secondary form__searchbar-clear"
-                        onClick={handleClear}>
-                        Clear
-                    </button>
-                </div>
             </form>
+            <div className="clear">
+                <button
+                    className="btn btn-secondary form__searchbar-clear"
+                    onClick={handleClear}>
+                    Clear
+                </button>
+            </div>
         </Fragment>
     );
 };
 
-export default SearchBar;
+const forwardedSearchBar = React.forwardRef(SearchBar);
+export default forwardedSearchBar;
