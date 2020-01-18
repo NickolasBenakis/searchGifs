@@ -21,7 +21,7 @@ const Gif = ({ id, url, image }) => {
 
     return (
         <div className="card-container">
-            <div className="card" style={divStyle}>
+            <div className="card lazy-load" data={divStyle.backgroundImage}>
                 <div className="card-body"></div>
             </div>
             <span

@@ -5,6 +5,7 @@ import searchGifApi from '../../../api/searchGifApi';
 import GifList from '../../components/gifList/gifList';
 import SkeletonCardList from '../skeletonCard/skeletonCardList';
 import useDebounce from '../../hooks/useDebounce';
+import lazyLoadImages from '../../utils/lazyLoadImages';
 
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
@@ -102,6 +103,15 @@ const HomePage = () => {
         window.sessionStorage.setItem('query', query);
     };
 
+    const showGifs = () => {
+        if (gifs.length && !loading) {
+            lazyLoadImages();
+            return true;
+        } else {
+            return false;
+        }
+    };
+
     return (
         <Fragment>
             <main className="main">
@@ -120,7 +130,7 @@ const HomePage = () => {
                     </div>
                 ) : loading ? (
                     <SkeletonCardList />
-                ) : gifs.length && !loading ? (
+                ) : showGifs() ? (
                     <GifList gifs={gifs} />
                 ) : null}
             </main>
