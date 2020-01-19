@@ -28,6 +28,8 @@
 
     &__searchbar-submit {
         transition: all 0.5s;
+        background: linear-gradient(to right, rgb(49, 145, 255), rgb(0, 230, 204), rgb(49, 145, 255)) 0% 100% / 300%;
+
     }
 }
 
