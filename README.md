@@ -1,4 +1,6 @@
+[![Build Status](https://travis-ci.com/NickolasBenakis/searchGifs.svg?token=qxst7gxQLWN7UYpYnuGV&branch=master)](https://travis-ci.com/NickolasBenakis/searchGifs)
 # searchGifs
+
 
 <p align="center">
   <img width="128" height="128" src="https://res.cloudinary.com/nickolasben/image/upload/v1579434804/searchGifs/xarqacyozabcvgcwc7la.png">
