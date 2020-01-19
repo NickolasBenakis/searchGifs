@@ -3,13 +3,12 @@ import gifLogo from '../../../theme/assets/gif.svg';
 const SearchBar = ({ handleSearch, handleClear }, ref) => {
     return (
         <Fragment>
-            <form method="POST" onSubmit={handleSearch} className="form">
-                <img className="form__logo" src={gifLogo} />
-                <div className="form-group">
+            <form name="searchbar" onSubmit={handleSearch} className="form">
+                <img className="form__logo" src={gifLogo} alt="gifLogo" />
+                <div className="form-group" role="group">
                     <input
                         ref={ref}
                         className="form__searchbar form-control"
-                        id="main-search-bar"
                         type="text"
                         name="search"
                         autoCapitalize="off"
