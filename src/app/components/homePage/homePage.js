@@ -57,7 +57,6 @@ const HomePage = () => {
         }
         return () => {
             controller.abort();
-            console.log(controller.signal.aborted);
         };
         // eslint-disable-next-line
     }, [debouncedQuery]);

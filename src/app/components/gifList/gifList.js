@@ -1,4 +1,4 @@
-import React, { Fragment } from 'react';
+import React from 'react';
 import Gif from '../gif/gif';
 import { handleImageUrl } from '../../utils/handleImageUrl';
 
