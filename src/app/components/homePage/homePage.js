@@ -6,18 +6,20 @@ import GifList from '../../components/gifList/gifList';
 import SkeletonCardList from '../skeletonCard/skeletonCardList';
 import useDebounce from '../../hooks/useDebounce';
 import lazyLoadImages from '../../utils/lazyLoadImages';
+import offlineHandler from '../../utils/offlineHandler';
 
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
     const [noResults, setNoResults] = useState(false);
     const [networkError, setNetworkError] = useState(false);
     const [isRefreshed, setIsRefreshed] = useState(false);
-
     const [gifs, setGifs] = useState([]);
     const [query, setQuery] = useState('');
     const SearchBarRef = useRef(null);
 
     const debouncedQuery = useDebounce(query, 400);
+    const controller = new AbortController();
+    const { signal } = controller;
 
     useEffect(() => {
         SearchBarRef.current.focus();
@@ -30,8 +32,7 @@ const HomePage = () => {
                 setNoResults(false);
                 setNetworkError(false);
                 setLoading(true);
-
-                const apiResponse = await searchGifApi(debouncedQuery);
+                const apiResponse = await searchGifApi(debouncedQuery, signal);
                 const results = apiResponse.data;
                 const { status } = apiResponse.meta;
 
@@ -54,6 +55,10 @@ const HomePage = () => {
         if (isValidQuery(debouncedQuery) && !isRefreshed) {
             searchGifs();
         }
+        return () => {
+            controller.abort();
+            console.log(controller.signal.aborted);
+        };
         // eslint-disable-next-line
     }, [debouncedQuery]);
 
@@ -92,10 +97,6 @@ const HomePage = () => {
         }
     };
 
-    // const abortHandler = () => {
-
-    // }
-
     const saveData = (gifs, query) => {
         window.sessionStorage.setItem('gifs', JSON.stringify(gifs));
         window.sessionStorage.setItem('query', query);
@@ -120,7 +121,11 @@ const HomePage = () => {
                     handleClear={handleClear}
                     ref={SearchBarRef}
                 />
-                {networkError ? (
+                {offlineHandler() ? (
+                    <div className="alert alert-warning" role="alert">
+                        Seems you're offline!
+                    </div>
+                ) : networkError ? (
                     <div className="alert alert-danger" role="alert">
                         Oups! NetworkError
                     </div>
