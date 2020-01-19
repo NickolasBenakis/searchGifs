@@ -1,6 +1,10 @@
 # searchGifs
 
-![alt text](https://res.cloudinary.com/nickolasben/image/upload/v1579434713/searchGifs/a9pqrzcnwqyla1ichy18.png)
+![alt text]
+
+<p align="center">
+  <img width="128" height="128" src="https://res.cloudinary.com/nickolasben/image/upload/v1579434804/searchGifs/xarqacyozabcvgcwc7la.png">
+</p>
 
 ## Table of Contents
 
