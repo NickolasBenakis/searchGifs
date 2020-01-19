@@ -10,6 +10,7 @@ var urlsToCache = [
     '/static/js/main.85bea854.chunk.js',
     '/static/media/gif.a4178ff8.svg'
 ];
+
 // Install a service worker
 self.addEventListener('install', event => {
     // Perform install steps

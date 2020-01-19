@@ -2,11 +2,14 @@ import React, { Fragment, useState, useEffect, useRef } from 'react';
 import SearchBar from '../searchBar/searchBar';
 import { isValidQuery } from '../../utils/isValidQuery';
 import searchGifApi from '../../../api/searchGifApi';
-import GifList from '../../components/gifList/gifList';
-import SkeletonCardList from '../skeletonCard/skeletonCardList';
 import useDebounce from '../../hooks/useDebounce';
 import lazyLoadImages from '../../utils/lazyLoadImages';
 import offlineHandler from '../../utils/offlineHandler';
+
+const SkeletonCardList = React.lazy(() =>
+    import('../skeletonCard/skeletonCardList')
+);
+const GifList = React.lazy(() => import('../../components/gifList/gifList'));
 
 const HomePage = () => {
     const [loading, setLoading] = useState(false);
