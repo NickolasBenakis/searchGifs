@@ -16,8 +16,11 @@
 
 ## Intro
 
+Production built is deployed -> https://searchgifs.surge.sh/.
+
 SearchGifs is a single page application that consumes the [GIPHY API](https://developers.giphy.com/).
 It displays, search and deletes GIFS. It is built in [React.js](https://reactjs.org/).
+It is PWA ready and installable on mobile devices.
 
 ## Features
 
