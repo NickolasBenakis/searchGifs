@@ -1,68 +1,72 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# searchGifs
 
-## Available Scripts
+![alt text](https://res.cloudinary.com/nickolasben/image/upload/v1579434713/searchGifs/a9pqrzcnwqyla1ichy18.png)
 
-In the project directory, you can run:
+## Table of Contents
 
-### `npm start`
+-   [Intro](#intro)
+-   [Install](#install)
+-   [Build](#build)
+-   [Run](#run)
+-   [Test](#test)
+-   [CI](#continuousIntegration)
+-   [Optimizations](#Optimizations)
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+## Intro
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+SearchGifs is a single page application that consumes the [GIPHY API](https://developers.giphy.com/).
+It displays, search and deletes GIFS. It is built in [React.js](https://reactjs.org/).
 
-### `npm test`
+## Features
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+-   Built with bundler (create-react-app)
+-   Mobile-first design
+-   Delete images functionality
+-   Persist results and search term on page refresh
+-   Copy GIF URL to clipboard
 
-### `npm run build`
+## Install
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+To install, `cd` to project root and run:
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+```
+$ npm install
+```
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+## Build
 
-### `npm run eject`
+To build for production, `cd` to project root and run:
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+```
+$ npm run build
+```
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+## Run
 
-Instead, it will copy all the configuration files and the transitive dependencies (Webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+To run the app in development, `cd` to project root and run:
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+```
+$ npm start
+```
 
-## Learn More
+## Test
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+This application does rely on jest testing framework. Run this following command to test the whole coverage of the app:
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+```
+$ npm test
+```
 
-### Code Splitting
+This uses `jest` to test the whole coverage of the application.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
+## CI
 
-### Analyzing the Bundle Size
+This application is getting build in every commit/ PR with Travis.To ensure that the production build does not break.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
+### Optimizations
 
-### Making a Progressive Web App
+A few optimizations have been implemented to help improve the performance of the app, including:
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `npm run build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+-   Used CDN cloudinary for prefeching images in order to optimize image resolution, responsiveness depending on the viewport and the device [here](https://cloudinary.com/) see more at `src/utils/handleImageUrl.js`
+-   Lazy loading of GIF images with [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) see more at `src/utils/lazyLoadImages.js`
+-   Handling refresh by saving on session storage gif results, searchTerm query
