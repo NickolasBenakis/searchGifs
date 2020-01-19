@@ -35,7 +35,6 @@ const HomePage = () => {
                 const results = apiResponse.data;
                 const { status } = apiResponse.meta;
 
-                console.log(results);
                 setLoading(false);
 
                 if (results.length && status === 200) {
@@ -61,7 +60,6 @@ const HomePage = () => {
     const handleSearch = e => {
         e.preventDefault();
         const value = SearchBarRef.current.value.toLowerCase();
-        console.log(value);
         setIsRefreshed(false);
         setQuery(value);
     };

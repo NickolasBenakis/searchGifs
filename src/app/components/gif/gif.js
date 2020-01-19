@@ -4,8 +4,21 @@ const Gif = ({ id, url, image }) => {
     const cardUrlRef = useRef(null);
     const [copied, setCopied] = useState(false);
 
-    const divStyle = {
+    const imageUrl = {
         backgroundImage: 'url(' + image + ')'
+    };
+
+    const applyMockClass = () => {
+        let num = parseInt(new Date().getTime());
+        if (num % 3 === 0 && num % 5 === 0) {
+            return 'mock-blue';
+        } else if (num % 3 === 0) {
+            return 'mock-purple';
+        } else if (num % 5 === 0) {
+            return 'mock-red';
+        } else {
+            return 'mock-green';
+        }
     };
 
     const copyToClipBoard = e => {
@@ -21,7 +34,9 @@ const Gif = ({ id, url, image }) => {
 
     return (
         <div className="card-container">
-            <div className="card lazy-load" data={divStyle.backgroundImage}>
+            <div
+                className={`card lazy-load ${applyMockClass()}`}
+                data={imageUrl.backgroundImage}>
                 <div className="card-body"></div>
             </div>
             <span
