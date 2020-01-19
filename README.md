@@ -1,6 +1,6 @@
 [![Build Status](https://travis-ci.com/NickolasBenakis/searchGifs.svg?token=qxst7gxQLWN7UYpYnuGV&branch=master)](https://travis-ci.com/NickolasBenakis/searchGifs)
-# searchGifs
 
+# searchGifs
 
 <p align="center">
   <img width="128" height="128" src="https://res.cloudinary.com/nickolasben/image/upload/v1579434804/searchGifs/xarqacyozabcvgcwc7la.png">
@@ -76,4 +76,6 @@ A few optimizations have been implemented to help improve the performance of the
 
 -   Used CDN cloudinary for prefeching images in order to optimize image resolution, responsiveness depending on the viewport and the device [here](https://cloudinary.com/) see more at `src/utils/handleImageUrl.js`
 -   Lazy loading of GIF images with [Intersection Observer API](https://developer.mozilla.org/en-US/docs/Web/API/Intersection_Observer_API) see more at `src/utils/lazyLoadImages.js`
+-   Lazy load components with React.lazy
 -   Handling refresh by saving on session storage gif results, searchTerm query
+-   Register service worker, offline mode (Right now only works on localhost)

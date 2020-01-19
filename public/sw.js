@@ -1,15 +1,15 @@
 let CACHE_NAME = 'searchGifs';
-// let urlsToCache = ['/', '/public'];
-var urlsToCache = [
-    '/',
-    '/index.html',
-    '/manifest.json',
-    '/asset-manifest.json',
-    '/static/css/main.21fa07b5.chunk.css',
-    '/static/js/2.fb910c13.chunk.js',
-    '/static/js/main.85bea854.chunk.js',
-    '/static/media/gif.a4178ff8.svg'
-];
+let urlsToCache = ['/', '/public'];
+// var urlsToCache = [
+//     '/',
+//     '/index.html',
+//     '/manifest.json',
+//     '/asset-manifest.json',
+//     '/static/css/main.21fa07b5.chunk.css',
+//     '/static/js/2.fb910c13.chunk.js',
+//     '/static/js/main.85bea854.chunk.js',
+//     '/static/media/gif.a4178ff8.svg'
+// ];
 
 // Install a service worker
 self.addEventListener('install', event => {
