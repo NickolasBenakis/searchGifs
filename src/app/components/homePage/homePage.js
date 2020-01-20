@@ -81,7 +81,7 @@ const HomePage = () => {
     };
 
     const handleRefresh = () => {
-        if (window.performance) {
+        if (window.performance && offlineHandler()) {
             if (parseInt(performance.navigation.type) === 1) {
                 console.log('Refresh');
                 setIsRefreshed(true);
